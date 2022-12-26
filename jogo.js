@@ -111,6 +111,8 @@ function criaFlappyBird() {
     },
     atualiza() {
       if (fazColisao(flappyBird, globais.chao)) {
+        console.log("PERDEU SEU TROUXA!");
+
         hit.play();
         setTimeout(() => {
           mudaTela(Telas.INICIO);
@@ -257,11 +259,11 @@ function criaCanos() {
           const cabecaFlappyBird = globais.flappyBird.y;
           const peFlappyBird = globais.flappyBird.y + globais.flappyBird.altura;
           hit.play();
-          setTimeout(() => {
-            mudaTela(Telas.INICIO);
-            console.log("colisao", cabecaFlappyBird, peFlappyBird);
-            console.log(par.canoCeu.y, par.canoChao.y);
-          }, 500);
+
+          console.log("PERDEU SEU TROUXA!");
+
+          mudaTela(Telas.INICIO);
+
           return;
         }
 
@@ -355,6 +357,12 @@ function loop() {
 
 window.addEventListener("click", function () {
   if (telaAtiva.handleClick) {
+    telaAtiva.handleClick();
+  }
+});
+
+window.addEventListener("keyup", (e) => {
+  if (event.code === "Space") {
     telaAtiva.handleClick();
   }
 });
